@@ -1,0 +1,14 @@
+button[type='submit']{
+  background: $color1;
+  width: 100%;
+  border-color: none;
+  text-shadow: none;
+  color:rgb(161, 186, 144);
+  padding: 18px;
+  font-size: 1.6em;
+  &:hover {
+    background: rgb(199, 81, 235);
+    color: $color1;
+    transition: 3s;
+  }
+}

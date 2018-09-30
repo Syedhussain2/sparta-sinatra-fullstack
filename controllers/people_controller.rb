@@ -1,4 +1,4 @@
-class App < Sinatra::Base
+class PeopleController < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end

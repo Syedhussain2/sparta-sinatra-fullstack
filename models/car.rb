@@ -3,7 +3,7 @@ class Car
   attr_accessor :id, :modal_name, :color, :year, :people
 
   def self.open_conection
-    conn = PG.connect( dbname: 'movies' )
+    conn = PG.connect( dbname: 'people' )
   end
 
   # In the controller, we'll call the save method like Movie.save, so we can use self. to access the properties of the Movie (eg title, year, actors)
@@ -12,7 +12,7 @@ class Car
 
     # IF the class instance that we're running the save method on does NOT have an ID then create, else update
     if !self.id
-      sql = "INSERT INTO cars (modal_name, color, year) VALUES ('#{self.modal_name}', '#{self.color}', #{self.year})"
+      sql = "INSERT INTO cars (modal_name, color, year) VALUES ('#{self.modal_name}', '#{self.color}', '#{self.year}')"
     else
       sql = "UPDATE cars SET modal_name='#{self.modal_name}', color='#{self.color}',year=#{self.year} WHERE id='#{self.id}'"
     end
@@ -76,20 +76,20 @@ class Car
   end
 
 
-  # def self.find_with_director id
-  #
-  #   conn = self.open_conection
-  #   # sql = "SELECT * FROM movies WHERE id=#{id}"
-  #
-  #   sql = "SELECT movies.id, movies.title, movies.year, movies.actors, movies.director_id, directors.id, directors.first_name, directors.last_name FROM directors JOIN movies ON movies.director_id = directors.id WHERE directors.id=#{id}"
-  #
-  #   results = conn.exec(sql)
-  #
-  #   movie = self.hydrate results[0]
-  #
-  #   movie
-  #
-  # end
+  def self.find_with_car id
+
+    conn = self.open_conection
+    sql = "SELECT * FROM movies WHERE id=#{id}"
+
+    sql = "SELECT people.id, people.first_name, people.last_name, people.gender, people.car_id, cars.id, cars.modal_name, cars.color, cars.year FROM cars JOIN people ON people.car_id = cars.id WHERE cars.id=#{id}"
+
+    results = conn.exec(sql)
+
+    people = self.hydrate results[0]
+
+    people
+
+  end
 
 
 end

@@ -1,18 +1,18 @@
 DROP TABLE IF EXISTS people;
 DROP TABLE IF EXISTS cars;
 
-create table car (
+create table cars (
 	id SERIAL PRIMARY KEY,
 	modal_name VARCHAR(50),
 	color VARCHAR(50),
-	year VARCHAR(50)
+	year int
 );
 
 create table people (
 	id SERIAL PRIMARY KEY,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
-	gender VARCHAR(50)
+	gender VARCHAR(50),
 	car_id int REFERENCES cars(id)
 );
 insert into cars (modal_name, color, year) values ('3000GT', 'Violet', 1997);
