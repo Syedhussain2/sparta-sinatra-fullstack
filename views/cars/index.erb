@@ -1,0 +1,26 @@
+<h1>Index Page</h1>
+
+<table class="table">
+  <thead>
+    <th>ID</th>
+    <th>Modal Name</th>
+    <th>year</th>
+    <th>color</th>
+    <th>people</th>
+  </thead>
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.id %></td>
+        <td><a href="/cars/<%= car.id %>"><%= car.modal_name %></a></td>
+        <td><%= car.year %></td>
+        <td>
+          <%= car.color %>
+        </td>
+        <td>
+          <%= car.first_name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
