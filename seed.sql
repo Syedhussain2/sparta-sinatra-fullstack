@@ -66,7 +66,7 @@ insert into cars (modal_name, color, year) values ('Matrix', 'Fuscia', 2010);
 insert into cars (modal_name, color, year) values ('Ranger', 'Aquamarine', 2001);
 insert into cars (modal_name, color, year) values ('Galaxie', 'Yellow', 1964);
 
-insert into people (first_name, last_name, gender) values ('Natalina', 'Barok', 'Female');
+insert into people (first_name, last_name, gender, car_id) values ('Natalina', 'Barok', 'Female', 1);
 insert into people (first_name, last_name, gender) values ('Abramo', 'Tyson', 'Male');
 insert into people (first_name, last_name, gender) values ('Evelyn', 'Obal', 'Male');
 insert into people (first_name, last_name, gender) values ('Malissa', 'Attwill', 'Female');

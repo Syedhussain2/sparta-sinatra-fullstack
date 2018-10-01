@@ -13,7 +13,7 @@ class CarsController < Sinatra::Base
   # INDEX
   get '/cars' do
     @title = "Index Page"
-    @cars = Car.all
+    @cars = Car.all_with_people
 
     erb :'cars/index'
   end

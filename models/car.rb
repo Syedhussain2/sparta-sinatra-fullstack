@@ -1,6 +1,6 @@
 class Car
 
-  attr_accessor :id, :modal_name, :color, :year, :people
+  attr_accessor :id, :modal_name, :color, :year, :first_name
 
   def self.open_conection
     conn = PG.connect( dbname: 'people' )
@@ -48,10 +48,12 @@ class Car
 
   def self.all_with_people
     conn = self.open_conection
-    sql = "SELECT people.id, people.first_name, people.last_name, people.gender, people.car_id, cars.id, cars.modal_name, cars.color FROM cars JOIN people ON people.car_id = cars.id WHERE cars.id=#{id}"
+    sql = "SELECT people.id, people.first_name, people.last_name, people.gender, people.car_id, cars.id,cars.year, cars.modal_name, cars.color FROM cars LEFT JOIN people ON people.car_id = cars.id"
     results = conn.exec(sql)
 
-    cars = self.hydrate results[0]
+    cars = results.map do |car|
+      self.hydrate car
+    end
 
     cars
   end
@@ -69,7 +71,7 @@ class Car
     car.modal_name = car_data['modal_name']
     car.color = car_data['color']
     car.year = car_data['year']
-    car.people = [car_data['title']]
+    car.first_name = car_data['first_name']
 
     car
 
